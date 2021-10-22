@@ -1,0 +1,9 @@
+{
+  "Parameters": {
+    "DB_HOST": "mysql",
+    "DB_USERNAME": "root",
+    "DB_PASSWORD": "password",
+    "DB_DBNAME": "my_database",
+    "DB_PORT": 3306
+  }
+}

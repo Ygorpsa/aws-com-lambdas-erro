@@ -1,0 +1,47 @@
+openapi: "3.0.1"
+info:
+  title: "groove-ri-documents"
+  description: "My awesome document management microservice"
+  version: "2021-06-09 18:15:06UTC"
+servers:
+- url: "https://nz0be5ey9l.execute-api.us-east-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: ""
+paths:
+  /document:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /document"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${arn_document_create}/invocations"
+        connectionType: "INTERNET"
+    post:
+      responses:
+        default:
+          description: "Default response for POST /document"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${arn_document_list}/invocations"
+        connectionType: "INTERNET"
+x-amazon-apigateway-cors:
+  allowMethods:
+  - "*"
+  allowHeaders:
+  - "authorization"
+  - "content-type"
+  - "x-amz-date"
+  - "x-amz-security-token"
+  - "x-amz-user-agent"
+  - "x-api-key"
+  maxAge: 0
+  allowCredentials: false
+  allowOrigins:
+  - "*"
+x-amazon-apigateway-importexport-version: "1.0"

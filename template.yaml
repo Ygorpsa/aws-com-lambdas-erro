@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for local testing purposes
+  
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  DocumentCreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/document/
+      Handler: create.handler
+      Runtime: nodejs14.x
+      Environment:
+        Variables:
+          DB_HOST: 
+          DB_USERNAME: 
+          DB_PASSWORD: 
+          DB_DBNAME: 
+          DB_PORT: 
+      Events:
+        DocumentCreate:
+          Type: Api
+          Properties:
+            Path: /documents
+            Method: post
+
+  DocumentList:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/document/
+      Handler: list.handler
+      Runtime: nodejs14.x
+      Environment:
+        Variables:
+          DB_HOST: 
+          DB_USERNAME: 
+          DB_PASSWORD: 
+          DB_DBNAME: 
+          DB_PORT: 
+      Events:
+        DocumentCreate:
+          Type: Api
+          Properties:
+            Path: /documents
+            Method: get
